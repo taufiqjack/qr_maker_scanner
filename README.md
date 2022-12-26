@@ -1,0 +1,2 @@
+# Flutter QR Generator
+
