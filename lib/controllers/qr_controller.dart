@@ -35,6 +35,11 @@ class QrController extends State<DashboardView> {
       },
     );
   }
+
+  clearText() {
+    inputText.clear();
+    setState(() {});
+  }
 }
 
 class MvcController {}

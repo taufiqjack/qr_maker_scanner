@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rencanggunung.qr_maker_scan">
    <application
-        android:label="qr_maker_scan"
+        android:label="Skenner - Buat Kode QRmu"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
