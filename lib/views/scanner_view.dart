@@ -5,11 +5,11 @@ import 'package:clipboard/clipboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:qr_maker_scan/utils/route.dart';
 import 'package:qr_maker_scan/views/dashboard_view.dart';
+import 'package:toast/toast.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class ScannerView extends StatefulWidget {
@@ -44,8 +44,7 @@ class _ScannerViewState extends State<ScannerView>
         mode: LaunchMode.externalApplication,
       );
     } else {
-      Fluttertoast.showToast(
-          msg: 'link url bermasalah', gravity: ToastGravity.BOTTOM);
+      Toast.show('link url bermasalah', gravity: Toast.bottom);
     }
   }
 
@@ -144,9 +143,7 @@ class _ScannerViewState extends State<ScannerView>
                               if (kDebugMode) {
                                 print('copied');
                               }
-                              Fluttertoast.showToast(
-                                  msg: 'Teks disalin',
-                                  gravity: ToastGravity.BOTTOM);
+                              Toast.show('Teks disalin', gravity: Toast.bottom);
                             });
                           },
                           child: Icon(Icons.copy,
@@ -238,9 +235,8 @@ class _ScannerViewState extends State<ScannerView>
                                 if (kDebugMode) {
                                   print('copied');
                                 }
-                                Fluttertoast.showToast(
-                                    msg: 'Teks disalin',
-                                    gravity: ToastGravity.BOTTOM);
+                                Toast.show('Teks disalin',
+                                    gravity: Toast.bottom);
                               });
                             },
                             child: Icon(Icons.copy,
