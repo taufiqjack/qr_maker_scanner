@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:qr_maker_scan/utils/route.dart';
 import 'package:qr_maker_scan/views/splash_view.dart';
 
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       navigatorKey: Go.navigatorKey,
       theme: ThemeData(
+        fontFamily: GoogleFonts.montserrat().fontFamily,
         primarySwatch: Colors.blue,
       ),
       home: const SplashView(),
