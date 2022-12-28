@@ -60,7 +60,7 @@ class QrController extends State<DashboardView> {
   saveToGallery() async {
     await requestPermission();
     Future.delayed(
-      Duration(seconds: 2),
+      const Duration(seconds: 2),
       () async {
         RenderRepaintBoundary boundary = globalKey.currentContext!
             .findRenderObject() as RenderRepaintBoundary;
