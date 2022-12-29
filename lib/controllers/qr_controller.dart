@@ -34,16 +34,21 @@ class QrController extends State<DashboardView> {
   Widget build(BuildContext context) => widget.build(context, this);
 
   onGenerate() async {
-    isLoading = true;
-    FocusManager.instance.primaryFocus?.unfocus();
-    setState(() {});
-    Future.delayed(
-      const Duration(seconds: 2),
-      () {
-        isLoading = false;
-        setState(() {});
-      },
-    );
+    if (inputText.text.isEmpty) {
+      Toast.show('form tidak boleh kosong',
+          gravity: Toast.bottom, duration: Toast.lengthLong);
+    } else {
+      isLoading = true;
+      FocusManager.instance.primaryFocus?.unfocus();
+      setState(() {});
+      Future.delayed(
+        const Duration(seconds: 2),
+        () {
+          isLoading = false;
+          setState(() {});
+        },
+      );
+    }
   }
 
   requestPermission() async {

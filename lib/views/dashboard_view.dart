@@ -31,7 +31,7 @@ class DashboardView extends StatefulWidget {
                 Align(
                   alignment: Alignment.topCenter,
                   child: SvgPicture.asset(
-                    'assets/images/skenner.svg',
+                    'assets/images/skenner_logo.svg',
                     height: MediaQuery.of(context).size.height / 4,
                     // child: Icon(
                     //   IonIcons.qr_code,
@@ -86,7 +86,7 @@ class DashboardView extends StatefulWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  controller.inputText.text.isEmpty || controller.isLoading
+                  controller.isLoading || controller.inputText.text.isEmpty
                       ? const SizedBox()
                       : Column(
                           children: [
@@ -168,19 +168,19 @@ class DashboardView extends StatefulWidget {
       context: globalContext,
       builder: (contex) => AlertDialog(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(10),
         ),
         title: const Text(
-          'Keluar?',
+          'Skenner',
           style: TextStyle(
             color: Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.w700,
           ),
         ),
-        content: Text(
+        content: const Text(
           'Keluar dari aplikasi?',
-          style: TextStyle(color: Colors.grey.shade300),
+          style: TextStyle(color: Colors.black),
         ),
         actions: [
           TextButton(
@@ -188,10 +188,10 @@ class DashboardView extends StatefulWidget {
                 Go.back();
               },
               child: const Text(
-                'Batalkan',
+                'Cancel',
                 style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
+                    color: Color.fromARGB(255, 98, 98, 98),
+                    fontSize: 14,
                     fontWeight: FontWeight.w700),
               )),
           TextButton(
@@ -201,8 +201,8 @@ class DashboardView extends StatefulWidget {
               child: const Text(
                 'Ok',
                 style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
+                    color: Color.fromARGB(255, 238, 0, 0),
+                    fontSize: 14,
                     fontWeight: FontWeight.w700),
               ))
         ],
