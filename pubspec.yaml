@@ -39,6 +39,7 @@ dependencies:
   take_screenshot: ^0.0.2
   permission_handler: ^10.2.0
   toast: ^0.3.0
+  google_fonts: ^3.0.1
 
 dev_dependencies:
   flutter_test:

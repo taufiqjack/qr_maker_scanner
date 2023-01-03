@@ -108,6 +108,28 @@ class _ScannerViewState extends State<ScannerView>
           ),
         ),
         Positioned(
+          top: MediaQuery.of(context).size.height / 10,
+          left: 0,
+          right: 0,
+          child: const Align(
+            alignment: Alignment.center,
+            child: Padding(
+                padding: EdgeInsets.only(
+                  top: 50,
+                  bottom: 10,
+                  left: 10,
+                ),
+                child: Text(
+                  'Pindai kode QR pada\nperangkat',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500),
+                )),
+          ),
+        ),
+        Positioned(
           bottom: 0,
           left: 0,
           right: 0,
