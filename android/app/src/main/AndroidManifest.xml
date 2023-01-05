@@ -32,7 +32,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             <intent-filter>
-                 <action android:name="android.media.browse.MediaBrowserService" />
+                <action android:name="android.media.browse.MediaBrowserService" />
+                <data android:scheme="https" />
+            </intent-filter>
+            <intent-filter>
+                 <action android:name="android.support.customtabs.action.CustomTabsService" />
             </intent-filter>
 
             
