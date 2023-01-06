@@ -1,4 +1,5 @@
 import 'package:custom_qr_generator/custom_qr_generator.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -46,6 +47,12 @@ class DashboardView extends StatefulWidget {
                   TextFormField(
                     controller: controller.inputText,
                     style: const TextStyle(color: Colors.white),
+                    onChanged: (value) {
+                      if (kDebugMode) {
+                        print(controller.inputText.toString());
+                      }
+                    },
+                    inputFormatters: [],
                     decoration: InputDecoration(
                       suffixIcon: InkWell(
                         onTap: () => controller.clearText(),
