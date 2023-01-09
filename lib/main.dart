@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:qr_maker_scan/utils/route.dart';
 import 'package:qr_maker_scan/views/splash_view.dart';
 

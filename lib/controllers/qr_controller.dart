@@ -3,8 +3,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:qr_maker_scan/utils/ads.dart';
 import 'package:qr_maker_scan/views/dashboard_view.dart';
 import 'dart:ui' as ui;
 
@@ -17,17 +19,26 @@ class QrController extends State<DashboardView> {
   bool isLoading = false;
   final GlobalKey globalKey = GlobalKey();
   int originalSize = 800;
+  BannerAd? bannerAd;
 
   @override
   void initState() {
     super.initState();
     ToastContext().init(context);
     instance = this;
+    bannerAd = BannerAd(
+      size: AdSize.banner,
+      adUnitId: bannerAds,
+      listener: const BannerAdListener(),
+      request: const AdRequest(),
+    );
+    bannerAd!.load();
   }
 
   @override
   void dispose() {
     void dispose() => super.dispose();
+    bannerAd!.dispose();
   }
 
   @override
