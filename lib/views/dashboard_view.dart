@@ -1,12 +1,10 @@
-import 'package:custom_qr_generator/custom_qr_generator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qr_maker_scan/controllers/qr_controller.dart';
-import 'package:qr_maker_scan/utils/ads.dart';
 import 'package:qr_maker_scan/utils/route.dart';
 import 'package:qr_maker_scan/views/scanner_view.dart';
 import 'package:qr_maker_scan/widgets/modal_progres.dart';
@@ -55,14 +53,14 @@ class DashboardView extends StatefulWidget {
                               print(controller.inputText.toString());
                             }
                           },
-                          inputFormatters: [],
+                          inputFormatters: const [],
                           decoration: InputDecoration(
                             suffixIcon: InkWell(
                               onTap: () => controller.clearText(),
                               child: Icon(FontAwesome.circle_xmark,
                                   color: Colors.grey.shade200),
                             ),
-                            hintText: 'Your Text or Url',
+                            hintText: 'Tulis teks atau Url',
                             hintStyle: TextStyle(color: Colors.grey.shade300),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
@@ -91,7 +89,7 @@ class DashboardView extends StatefulWidget {
                               controller.onGenerate();
                             },
                             child: const Text(
-                              'Create',
+                              'Buat',
                               style: TextStyle(color: Colors.black),
                             ),
                           ),
@@ -106,28 +104,47 @@ class DashboardView extends StatefulWidget {
                                 children: [
                                   RepaintBoundary(
                                     key: controller.globalKey,
-                                    child: CustomPaint(
-                                      painter: QrPainter(
-                                          data: controller.inputText.text,
-                                          options: const QrOptions(
-                                              // shapes: QrShapes(
-                                              //   darkPixel: QrPixelShapeRoundCorners(
-                                              //       cornerFraction: .5),
-                                              //   frame: QrFrameShapeRoundCorners(
-                                              //       cornerFraction: 25),
-                                              //   ball: QrBallShapeRoundCorners(
-                                              //       cornerFraction: .25),
-                                              // ),
-                                              // colors: QrColors(
-                                              //     dark: QrColorLinearGradient(
-                                              //         colors: [
-                                              //   Color.fromARGB(255, 255, 0, 0),
-                                              //   Color.fromARGB(255, 0, 0, 255)
-                                              // ],
-                                              //         orientation: GradientOrientation
-                                              //             .leftDiagonal))
-                                              )),
-                                      size: const Size(200, 200),
+                                    child:
+                                        // CustomPaint(
+                                        //   painter:
+                                        // QrPainter(
+                                        //     data: controller.inputText.text,
+                                        //     options: const QrOptions(
+                                        //         // shapes: QrShapes(
+                                        //         //   darkPixel: QrPixelShapeRoundCorners(
+                                        //         //       cornerFraction: .5),
+                                        //         //   frame: QrFrameShapeRoundCorners(
+                                        //         //       cornerFraction: 25),
+                                        //         //   ball: QrBallShapeRoundCorners(
+                                        //         //       cornerFraction: .25),
+                                        //         // ),
+                                        //         // colors: QrColors(
+                                        //         //     dark: QrColorLinearGradient(
+                                        //         //         colors: [
+                                        //         //   Color.fromARGB(255, 255, 0, 0),
+                                        //         //   Color.fromARGB(255, 0, 0, 255)
+                                        //         // ],
+                                        //         //         orientation: GradientOrientation
+                                        //         //             .leftDiagonal))
+                                        //         )),
+                                        // size: const Size(200, 200),
+
+                                        // ),
+
+                                        Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color: Colors.white),
+                                      child: QrImage(
+                                        data: controller.inputText.text,
+                                        gapless: true,
+                                        embeddedImage: const AssetImage(
+                                            'assets/images/skenner_logo.png'),
+                                        size:
+                                            MediaQuery.of(context).size.height /
+                                                5,
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(
@@ -154,14 +171,14 @@ class DashboardView extends StatefulWidget {
                     ],
                   ),
                 )),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: SizedBox(
-                height: controller.bannerAd!.size.height.toDouble(),
-                width: controller.bannerAd!.size.width.toDouble(),
-                child: AdWidget(ad: controller.bannerAd!),
-              ),
-            )
+            // Align(
+            //   alignment: Alignment.bottomCenter,
+            //   child: SizedBox(
+            //     height: controller.bannerAd!.size.height.toDouble(),
+            //     width: controller.bannerAd!.size.width.toDouble(),
+            //     child: AdWidget(ad: controller.bannerAd!),
+            //   ),
+            // )
           ]),
         ),
       ),

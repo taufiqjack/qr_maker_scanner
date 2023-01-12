@@ -28,7 +28,7 @@ class QrController extends State<DashboardView> {
     instance = this;
     bannerAd = BannerAd(
       size: AdSize.banner,
-      adUnitId: bannerAds,
+      adUnitId: sample,
       listener: const BannerAdListener(),
       request: const AdRequest(),
     );
@@ -53,7 +53,7 @@ class QrController extends State<DashboardView> {
       FocusManager.instance.primaryFocus?.unfocus();
       setState(() {});
       Future.delayed(
-        const Duration(seconds: 2),
+        const Duration(milliseconds: 500),
         () {
           isLoading = false;
           setState(() {});

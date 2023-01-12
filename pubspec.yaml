@@ -41,6 +41,8 @@ dependencies:
   toast: ^0.3.0
   google_fonts: ^3.0.1
   google_mobile_ads: ^2.3.0
+  qr_flutter: ^4.0.0
+  pretty_qr_code: ^2.0.2
 
 dev_dependencies:
   flutter_test:
