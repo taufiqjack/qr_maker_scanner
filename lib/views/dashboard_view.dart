@@ -13,8 +13,6 @@ class DashboardView extends StatefulWidget {
   const DashboardView({super.key});
 
   Widget build(BuildContext context, QrController controller) {
-    controller.view = this;
-
     return Scaffold(
       backgroundColor: Colors.blueAccent,
       body: WillPopScope(

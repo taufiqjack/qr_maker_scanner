@@ -12,18 +12,23 @@ import 'dart:ui' as ui;
 
 import 'package:toast/toast.dart';
 
+import '../utils/route.dart';
+
 class QrController extends State<DashboardView> {
   static late QrController instance;
-  late DashboardView view;
   TextEditingController inputText = TextEditingController();
   bool isLoading = false;
   final GlobalKey globalKey = GlobalKey();
   int originalSize = 800;
   BannerAd? bannerAd;
+  InterstitialAd? interstitialAd;
+  int loadAttemps = 10;
+  int maxFailedLoad = 10;
 
   @override
   void initState() {
     super.initState();
+    createInterstitialAds();
     ToastContext().init(context);
     instance = this;
     bannerAd = BannerAd(
@@ -39,6 +44,7 @@ class QrController extends State<DashboardView> {
   void dispose() {
     void dispose() => super.dispose();
     bannerAd!.dispose();
+    interstitialAd!.dispose();
   }
 
   @override
@@ -96,6 +102,43 @@ class QrController extends State<DashboardView> {
   clearText() {
     inputText.clear();
     setState(() {});
+  }
+
+  // show interstital ads
+  void createInterstitialAds() {
+    InterstitialAd.load(
+      adUnitId: intersAds,
+      request: const AdRequest(),
+      adLoadCallback:
+          InterstitialAdLoadCallback(onAdLoaded: (InterstitialAd ad) {
+        interstitialAd = ad;
+        Future.delayed(const Duration(seconds: 15), () {
+          showIntertitialAd();
+        });
+      }, onAdFailedToLoad: (LoadAdError error) {
+        if (maxFailedLoad == 10) {
+          createInterstitialAds();
+        } else {
+          Go.to(const DashboardView());
+        }
+      }),
+    );
+  }
+
+  void showIntertitialAd() {
+    if (interstitialAd == null) {
+      if (kDebugMode) {
+        print('attempt to show load ads');
+      }
+      return;
+    }
+    interstitialAd!.fullScreenContentCallback =
+        FullScreenContentCallback(onAdDismissedFullScreenContent: (ad) {
+      ad.dispose();
+      Go.to(const DashboardView());
+    });
+    interstitialAd!.show();
+    interstitialAd = null;
   }
 }
 
