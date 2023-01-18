@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qr_maker_scan/controllers/qr_controller.dart';
@@ -137,8 +138,8 @@ class DashboardView extends StatefulWidget {
                                       child: QrImage(
                                         data: controller.inputText.text,
                                         gapless: true,
-                                        embeddedImage: const AssetImage(
-                                            'assets/images/skenner_logo.png'),
+                                        // embeddedImage: const AssetImage(
+                                        //     'assets/images/skenner_logo.png'),
                                         size:
                                             MediaQuery.of(context).size.height /
                                                 5,
@@ -169,14 +170,14 @@ class DashboardView extends StatefulWidget {
                     ],
                   ),
                 )),
-            // Align(
-            //   alignment: Alignment.bottomCenter,
-            //   child: SizedBox(
-            //     height: controller.bannerAd!.size.height.toDouble(),
-            //     width: controller.bannerAd!.size.width.toDouble(),
-            //     child: AdWidget(ad: controller.bannerAd!),
-            //   ),
-            // )
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: SizedBox(
+                height: controller.bannerAd!.size.height.toDouble(),
+                width: controller.bannerAd!.size.width.toDouble(),
+                child: AdWidget(ad: controller.bannerAd!),
+              ),
+            )
           ]),
         ),
       ),

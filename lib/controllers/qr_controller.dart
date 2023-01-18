@@ -18,7 +18,7 @@ class QrController extends State<DashboardView> {
   static late QrController instance;
   TextEditingController inputText = TextEditingController();
   bool isLoading = false;
-  final GlobalKey globalKey = GlobalKey();
+  GlobalKey globalKey = GlobalKey();
   int originalSize = 800;
   BannerAd? bannerAd;
   InterstitialAd? interstitialAd;
@@ -33,7 +33,7 @@ class QrController extends State<DashboardView> {
     instance = this;
     bannerAd = BannerAd(
       size: AdSize.banner,
-      adUnitId: sample,
+      adUnitId: bannerAds,
       listener: const BannerAdListener(),
       request: const AdRequest(),
     );
@@ -90,7 +90,8 @@ class QrController extends State<DashboardView> {
         ByteData? byteData =
             await (image.toByteData(format: ui.ImageByteFormat.png));
         if (byteData != null) {
-          await ImageGallerySaver.saveImage(byteData.buffer.asUint8List());
+          await ImageGallerySaver.saveImage(byteData.buffer.asUint8List(),
+              isReturnImagePathOfIOS: true);
 
           Toast.show('Gambar tersimpan!',
               gravity: Toast.bottom, duration: Toast.lengthLong);
