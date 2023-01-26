@@ -186,8 +186,9 @@ class DashboardView extends StatefulWidget {
         onPressed: () {
           Go.to(const ScannerView());
         },
-        child: const Icon(
+        child: Icon(
           Icons.qr_code_scanner_outlined,
+          color: Colors.blue[500],
         ),
       ),
       bottomNavigationBar: Container(

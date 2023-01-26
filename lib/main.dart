@@ -17,8 +17,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       navigatorKey: Go.navigatorKey,
       theme: ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: Colors.blue[700],
         fontFamily: GoogleFonts.montserrat().fontFamily,
-        primarySwatch: Colors.blue,
       ),
       home: const SplashView(),
     );
