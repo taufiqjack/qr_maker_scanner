@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:lottie/lottie.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qr_maker_scan/controllers/qr_controller.dart';
 import 'package:qr_maker_scan/utils/route.dart';
@@ -31,17 +32,15 @@ class DashboardView extends StatefulWidget {
                     children: [
                       Align(
                         alignment: Alignment.topCenter,
-                        child: SvgPicture.asset(
-                          'assets/images/skenner_logo.svg',
-                          height: MediaQuery.of(context).size.height / 4,
-                          // child: Icon(
-                          //   IonIcons.qr_code,
-                          //   color: Colors.white,
-                          //   size: MediaQuery.of(context).size.height / 5,
-                        ),
+                        child: Lottie.asset('assets/lotties/qr_scan.json',
+                            height: 200),
+                        // child: SvgPicture.asset(
+                        //   'assets/images/skenner_logo.svg',
+                        //   height: MediaQuery.of(context).size.height / 4,
+                        // ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 5,
                       ),
                       Column(children: [
                         TextFormField(
@@ -104,31 +103,31 @@ class DashboardView extends StatefulWidget {
                                   RepaintBoundary(
                                     key: controller.globalKey,
                                     child:
-                                        // CustomPaint(
-                                        //   painter:
-                                        // QrPainter(
-                                        //     data: controller.inputText.text,
-                                        //     options: const QrOptions(
-                                        //         // shapes: QrShapes(
-                                        //         //   darkPixel: QrPixelShapeRoundCorners(
-                                        //         //       cornerFraction: .5),
-                                        //         //   frame: QrFrameShapeRoundCorners(
-                                        //         //       cornerFraction: 25),
-                                        //         //   ball: QrBallShapeRoundCorners(
-                                        //         //       cornerFraction: .25),
-                                        //         // ),
-                                        //         // colors: QrColors(
-                                        //         //     dark: QrColorLinearGradient(
-                                        //         //         colors: [
-                                        //         //   Color.fromARGB(255, 255, 0, 0),
-                                        //         //   Color.fromARGB(255, 0, 0, 255)
-                                        //         // ],
-                                        //         //         orientation: GradientOrientation
-                                        //         //             .leftDiagonal))
-                                        //         )),
-                                        // size: const Size(200, 200),
+                                        /*  CustomPaint(
+                                          painter:
+                                        QrPainter(
+                                            data: controller.inputText.text,
+                                            options: const QrOptions(
+                                                // shapes: QrShapes(
+                                                //   darkPixel: QrPixelShapeRoundCorners(
+                                                //       cornerFraction: .5),
+                                                //   frame: QrFrameShapeRoundCorners(
+                                                //       cornerFraction: 25),
+                                                //   ball: QrBallShapeRoundCorners(
+                                                //       cornerFraction: .25),
+                                                // ),
+                                                // colors: QrColors(
+                                                //     dark: QrColorLinearGradient(
+                                                //         colors: [
+                                                //   Color.fromARGB(255, 255, 0, 0),
+                                                //   Color.fromARGB(255, 0, 0, 255)
+                                                // ],
+                                                //         orientation: GradientOrientation
+                                                //             .leftDiagonal))
+                                                )),
+                                        size: const Size(200, 200),
 
-                                        // ),
+                                        ), */
 
                                         Container(
                                       decoration: BoxDecoration(

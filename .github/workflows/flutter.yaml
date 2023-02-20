@@ -58,3 +58,25 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/*.aab"
+  
+  release_internal:
+    #2. Release Artifact ke Internal track Play Console
+    name: Release Artifacts to internal track
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Get APPBUNDLE from Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: APPBUNDLE
+      - name: Release APPBUNDLE to internal track
+        uses: r0adkll/upload-google-play@v1
+        with:
+          # Ini didapat dari service account yang sudah dibuat
+          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_SERVICE_JSONKEY }}
+          # Ini didapat dari nama package yang sudah diupload melalui internal track
+          packageName: com.rencanggunung.qr_maker_scan
+          releaseFiles: app-release.aab
+          track: internal
+          status: draft
