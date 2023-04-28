@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_maker_scan/core/constants/enum.dart';
 import 'package:qr_maker_scan/core/storage/main_storage.dart';

@@ -200,14 +200,12 @@ class DashboardView extends StatefulWidget {
         title: const Text(
           'Skenner',
           style: TextStyle(
-            color: Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.w700,
           ),
         ),
         content: const Text(
           'Keluar dari aplikasi?',
-          style: TextStyle(color: Colors.black),
         ),
         actions: [
           TextButton(
@@ -217,7 +215,7 @@ class DashboardView extends StatefulWidget {
               child: const Text(
                 'Cancel',
                 style: TextStyle(
-                    color: Color.fromARGB(255, 98, 98, 98),
+                    color: Color.fromARGB(255, 182, 182, 182),
                     fontSize: 14,
                     fontWeight: FontWeight.w700),
               )),
