@@ -1,12 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:lottie/lottie.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qr_maker_scan/controllers/qr_controller.dart';
+import 'package:qr_maker_scan/core/bloc/themes/theme_bloc.dart';
 import 'package:qr_maker_scan/utils/route.dart';
 import 'package:qr_maker_scan/views/scanner_view.dart';
 import 'package:qr_maker_scan/widgets/modal_progres.dart';
@@ -16,7 +18,6 @@ class DashboardView extends StatefulWidget {
 
   Widget build(BuildContext context, QrController controller) {
     return Scaffold(
-      backgroundColor: Colors.blueAccent,
       body: WillPopScope(
         onWillPop: exitApp,
         child: ModalProgress(
@@ -45,7 +46,6 @@ class DashboardView extends StatefulWidget {
                       Column(children: [
                         TextFormField(
                           controller: controller.inputText,
-                          style: const TextStyle(color: Colors.white),
                           onChanged: (value) {
                             if (kDebugMode) {
                               print(controller.inputText.toString());
@@ -55,23 +55,24 @@ class DashboardView extends StatefulWidget {
                           decoration: InputDecoration(
                             suffixIcon: InkWell(
                               onTap: () => controller.clearText(),
-                              child: Icon(FontAwesome.circle_xmark,
-                                  color: Colors.grey.shade200),
+                              child: const Icon(FontAwesome.circle_xmark),
                             ),
                             hintText: 'Tulis teks atau Url',
-                            hintStyle: TextStyle(color: Colors.grey.shade300),
                             border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide:
-                                    const BorderSide(color: Colors.white)),
+                              borderRadius: BorderRadius.circular(8),
+                              borderSide:
+                                  BorderSide(color: Colors.grey.shade200),
+                            ),
                             enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide:
-                                    const BorderSide(color: Colors.white)),
+                              borderRadius: BorderRadius.circular(8),
+                              borderSide:
+                                  BorderSide(color: Colors.grey.shade200),
+                            ),
                             focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide:
-                                    const BorderSide(color: Colors.white)),
+                              borderRadius: BorderRadius.circular(8),
+                              borderSide:
+                                  BorderSide(color: Colors.grey.shade200),
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -92,9 +93,24 @@ class DashboardView extends StatefulWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 30,
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text('Mode Gelap'),
+                            BlocBuilder<ThemeBloc, ThemeData>(
+                              builder: (context, state) {
+                                return CupertinoSwitch(
+                                  value: state == ThemeData.dark(),
+                                  onChanged: (value) =>
+                                      BlocProvider.of<ThemeBloc>(context)
+                                          .add(ThemeSwitchEvent()),
+                                );
+                              },
+                            ),
+                          ],
                         ),
+                        const SizedBox(height: 10),
                         controller.isLoading ||
                                 controller.inputText.text.isEmpty
                             ? const SizedBox()
@@ -102,34 +118,7 @@ class DashboardView extends StatefulWidget {
                                 children: [
                                   RepaintBoundary(
                                     key: controller.globalKey,
-                                    child:
-                                        /*  CustomPaint(
-                                          painter:
-                                        QrPainter(
-                                            data: controller.inputText.text,
-                                            options: const QrOptions(
-                                                // shapes: QrShapes(
-                                                //   darkPixel: QrPixelShapeRoundCorners(
-                                                //       cornerFraction: .5),
-                                                //   frame: QrFrameShapeRoundCorners(
-                                                //       cornerFraction: 25),
-                                                //   ball: QrBallShapeRoundCorners(
-                                                //       cornerFraction: .25),
-                                                // ),
-                                                // colors: QrColors(
-                                                //     dark: QrColorLinearGradient(
-                                                //         colors: [
-                                                //   Color.fromARGB(255, 255, 0, 0),
-                                                //   Color.fromARGB(255, 0, 0, 255)
-                                                // ],
-                                                //         orientation: GradientOrientation
-                                                //             .leftDiagonal))
-                                                )),
-                                        size: const Size(200, 200),
-
-                                        ), */
-
-                                        Container(
+                                    child: Container(
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(5),
@@ -185,16 +174,15 @@ class DashboardView extends StatefulWidget {
         onPressed: () {
           Go.to(const ScannerView());
         },
-        child: Icon(
+        child: const Icon(
           Icons.qr_code_scanner_outlined,
-          color: Colors.blue[500],
         ),
       ),
       bottomNavigationBar: Container(
         height: MediaQuery.of(context).size.height / 20,
-        decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
+        decoration: BoxDecoration(
+            color: Colors.grey.shade400,
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
             )),
