@@ -28,16 +28,16 @@ class QrController extends State<DashboardView> {
   @override
   void initState() {
     super.initState();
-    // createInterstitialAds();
+    createInterstitialAds();
     ToastContext().init(context);
     instance = this;
-    /*  bannerAd = BannerAd(
+    bannerAd = BannerAd(
       size: AdSize.banner,
       adUnitId: bannerAds,
       listener: const BannerAdListener(),
       request: const AdRequest(),
     );
-    bannerAd!.load(); */
+    bannerAd!.load();
   }
 
   @override

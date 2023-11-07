@@ -126,7 +126,7 @@ class DashboardView extends StatefulWidget {
                                           borderRadius:
                                               BorderRadius.circular(5),
                                           color: Colors.white),
-                                      child: QrImage(
+                                      child: QrImageView(
                                         data: controller.inputText.text,
                                         gapless: true,
                                         // embeddedImage: const AssetImage(
@@ -167,14 +167,14 @@ class DashboardView extends StatefulWidget {
                     ],
                   ),
                 )),
-            /*  Align(
+            Align(
               alignment: Alignment.bottomCenter,
               child: SizedBox(
                 height: controller.bannerAd!.size.height.toDouble(),
                 width: controller.bannerAd!.size.width.toDouble(),
                 child: AdWidget(ad: controller.bannerAd!),
               ),
-            ) */
+            )
           ]),
         ),
       ),
