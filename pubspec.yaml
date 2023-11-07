@@ -23,7 +23,7 @@ dependencies:
   take_screenshot: ^0.0.2
   permission_handler: ^10.2.0
   toast: ^0.3.0
-  google_fonts: ^3.0.1
+  google_fonts: ^4.0.4
   google_mobile_ads: ^2.3.0
   qr_flutter: ^4.0.0
   pretty_qr_code: ^2.0.2
