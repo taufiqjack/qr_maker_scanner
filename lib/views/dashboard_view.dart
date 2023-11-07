@@ -81,9 +81,12 @@ class DashboardView extends StatefulWidget {
                         SizedBox(
                           width: MediaQuery.of(context).size.width,
                           height: 40,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white),
+                          child: TextButton(
+                            style: TextButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5)),
+                                elevation: 0.5,
+                                backgroundColor: Colors.grey.shade300),
                             onPressed: () {
                               controller.onGenerate();
                             },
@@ -142,13 +145,19 @@ class DashboardView extends StatefulWidget {
                                     height: 40,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.white),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          backgroundColor:
+                                              Colors.grey.shade300),
                                       onPressed: () {
                                         controller.saveToGallery();
                                       },
                                       child: const Text(
                                         'Save',
-                                        style: TextStyle(color: Colors.black54),
+                                        style: TextStyle(
+                                            color: Colors.black54,
+                                            fontWeight: FontWeight.w600),
                                       ),
                                     ),
                                   ),
@@ -158,14 +167,14 @@ class DashboardView extends StatefulWidget {
                     ],
                   ),
                 )),
-            Align(
+            /*  Align(
               alignment: Alignment.bottomCenter,
               child: SizedBox(
                 height: controller.bannerAd!.size.height.toDouble(),
                 width: controller.bannerAd!.size.width.toDouble(),
                 child: AdWidget(ad: controller.bannerAd!),
               ),
-            )
+            ) */
           ]),
         ),
       ),
@@ -181,7 +190,7 @@ class DashboardView extends StatefulWidget {
       bottomNavigationBar: Container(
         height: MediaQuery.of(context).size.height / 20,
         decoration: BoxDecoration(
-            color: Colors.grey.shade400,
+            color: Colors.grey.shade300,
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
