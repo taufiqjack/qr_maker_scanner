@@ -43,8 +43,8 @@ class QrController extends State<DashboardView> {
   @override
   void dispose() {
     void dispose() => super.dispose();
-    /*  bannerAd!.dispose();
-    interstitialAd!.dispose(); */
+    bannerAd!.dispose();
+    interstitialAd!.dispose();
   }
 
   @override
