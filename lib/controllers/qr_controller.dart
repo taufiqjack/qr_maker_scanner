@@ -28,7 +28,7 @@ class QrController extends State<DashboardView> {
   @override
   void initState() {
     super.initState();
-    createInterstitialAds();
+    // createInterstitialAds();
     ToastContext().init(context);
     instance = this;
     bannerAd = BannerAd(
@@ -44,7 +44,7 @@ class QrController extends State<DashboardView> {
   void dispose() {
     void dispose() => super.dispose();
     bannerAd!.dispose();
-    interstitialAd!.dispose();
+    // interstitialAd!.dispose();
   }
 
   @override
