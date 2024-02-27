@@ -22,163 +22,146 @@ class DashboardView extends StatefulWidget {
         onWillPop: exitApp,
         child: ModalProgress(
           inAsyncCall: controller.isLoading,
-          child: Stack(children: [
-            Padding(
-                padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height / 10,
-                    left: 20,
-                    right: 20),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: Lottie.asset('assets/lotties/qr_scan.json',
-                            height: 200),
-                        // child: SvgPicture.asset(
-                        //   'assets/images/skenner_logo.svg',
-                        //   height: MediaQuery.of(context).size.height / 4,
-                        // ),
+          child: Padding(
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height / 10,
+                  left: 20,
+                  right: 20),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: Lottie.asset('assets/lotties/qr_scan.json',
+                          height: 200),
+                      // child: SvgPicture.asset(
+                      //   'assets/images/skenner_logo.svg',
+                      //   height: MediaQuery.of(context).size.height / 4,
+                      // ),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Column(children: [
+                      TextFormField(
+                        controller: controller.inputText,
+                        onChanged: (value) {
+                          if (kDebugMode) {
+                            print(controller.inputText.toString());
+                          }
+                        },
+                        inputFormatters: const [],
+                        decoration: InputDecoration(
+                          suffixIcon: InkWell(
+                            onTap: () => controller.clearText(),
+                            child: const Icon(FontAwesome.circle_xmark),
+                          ),
+                          hintText: 'Tulis teks atau Url',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide(color: Colors.grey.shade200),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide(color: Colors.grey.shade200),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide(color: Colors.grey.shade200),
+                          ),
+                        ),
                       ),
                       const SizedBox(
-                        height: 5,
+                        height: 20,
                       ),
-                      Column(children: [
-                        TextFormField(
-                          controller: controller.inputText,
-                          onChanged: (value) {
-                            if (kDebugMode) {
-                              print(controller.inputText.toString());
-                            }
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: 40,
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5)),
+                              elevation: 0.5,
+                              backgroundColor: Colors.grey.shade300),
+                          onPressed: () {
+                            controller.onGenerate();
                           },
-                          inputFormatters: const [],
-                          decoration: InputDecoration(
-                            suffixIcon: InkWell(
-                              onTap: () => controller.clearText(),
-                              child: const Icon(FontAwesome.circle_xmark),
-                            ),
-                            hintText: 'Tulis teks atau Url',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide:
-                                  BorderSide(color: Colors.grey.shade200),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide:
-                                  BorderSide(color: Colors.grey.shade200),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide:
-                                  BorderSide(color: Colors.grey.shade200),
-                            ),
+                          child: const Text(
+                            'Buat',
+                            style: TextStyle(color: Colors.black),
                           ),
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          height: 40,
-                          child: TextButton(
-                            style: TextButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5)),
-                                elevation: 0.5,
-                                backgroundColor: Colors.grey.shade300),
-                            onPressed: () {
-                              controller.onGenerate();
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text('Mode Gelap'),
+                          BlocBuilder<ThemeBloc, ThemeData>(
+                            builder: (context, state) {
+                              return CupertinoSwitch(
+                                value: state == ThemeData.dark(),
+                                onChanged: (value) =>
+                                    BlocProvider.of<ThemeBloc>(context)
+                                        .add(ThemeSwitchEvent()),
+                              );
                             },
-                            child: const Text(
-                              'Buat',
-                              style: TextStyle(color: Colors.black),
-                            ),
                           ),
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text('Mode Gelap'),
-                            BlocBuilder<ThemeBloc, ThemeData>(
-                              builder: (context, state) {
-                                return CupertinoSwitch(
-                                  value: state == ThemeData.dark(),
-                                  onChanged: (value) =>
-                                      BlocProvider.of<ThemeBloc>(context)
-                                          .add(ThemeSwitchEvent()),
-                                );
-                              },
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      controller.isLoading || controller.inputText.text.isEmpty
+                          ? const SizedBox()
+                          : Column(
+                              children: [
+                                RepaintBoundary(
+                                  key: controller.globalKey,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: Colors.white),
+                                    child: QrImageView(
+                                      data: controller.inputText.text,
+                                      gapless: true,
+                                      // embeddedImage: const AssetImage(
+                                      //     'assets/images/skenner_logo.png'),
+                                      size: MediaQuery.of(context).size.height /
+                                          5,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                SizedBox(
+                                  width: 100,
+                                  height: 40,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        backgroundColor: Colors.grey.shade300),
+                                    onPressed: () {
+                                      controller.saveToGallery();
+                                    },
+                                    child: const Text(
+                                      'Save',
+                                      style: TextStyle(
+                                          color: Colors.black54,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        controller.isLoading ||
-                                controller.inputText.text.isEmpty
-                            ? const SizedBox()
-                            : Column(
-                                children: [
-                                  RepaintBoundary(
-                                    key: controller.globalKey,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          color: Colors.white),
-                                      child: QrImageView(
-                                        data: controller.inputText.text,
-                                        gapless: true,
-                                        // embeddedImage: const AssetImage(
-                                        //     'assets/images/skenner_logo.png'),
-                                        size:
-                                            MediaQuery.of(context).size.height /
-                                                5,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  SizedBox(
-                                    width: 100,
-                                    height: 40,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(5)),
-                                          backgroundColor:
-                                              Colors.grey.shade300),
-                                      onPressed: () {
-                                        controller.saveToGallery();
-                                      },
-                                      child: const Text(
-                                        'Save',
-                                        style: TextStyle(
-                                            color: Colors.black54,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                      ]),
-                    ],
-                  ),
-                )),
-            Align(
-              alignment: Alignment.topCenter,
-              child: SizedBox(
-                height: controller.bannerAd!.size.height.toDouble(),
-                width: controller.bannerAd!.size.width.toDouble(),
-                child: AdWidget(ad: controller.bannerAd!),
-              ),
-            )
-          ]),
+                    ]),
+                  ],
+                ),
+              )),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Go.to(const ScannerView());
@@ -195,6 +178,14 @@ class DashboardView extends StatefulWidget {
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
             )),
+        child: Align(
+          alignment: Alignment.bottomCenter,
+          child: SizedBox(
+            height: controller.bannerAd!.size.height.toDouble(),
+            width: controller.bannerAd!.size.width.toDouble(),
+            child: AdWidget(ad: controller.bannerAd!),
+          ),
+        ),
       ),
     );
   }
