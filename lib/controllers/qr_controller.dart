@@ -33,7 +33,7 @@ class QrController extends State<DashboardView> {
     instance = this;
     bannerAd = BannerAd(
       size: AdSize.banner,
-      adUnitId: sample,
+      adUnitId: bannerAds,
       listener: const BannerAdListener(),
       request: const AdRequest(),
     );
