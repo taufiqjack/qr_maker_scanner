@@ -168,7 +168,7 @@ class DashboardView extends StatefulWidget {
                   ),
                 )),
             Align(
-              alignment: Alignment.bottomCenter,
+              alignment: Alignment.topCenter,
               child: SizedBox(
                 height: controller.bannerAd!.size.height.toDouble(),
                 width: controller.bannerAd!.size.width.toDouble(),

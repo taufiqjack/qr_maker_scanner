@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:qr_maker_scan/core/bloc/themes/theme_bloc.dart';
 import 'package:qr_maker_scan/core/constants/hive_stuff.dart';
 import 'package:qr_maker_scan/utils/route.dart';
@@ -9,6 +10,7 @@ import 'package:qr_maker_scan/views/splash_view.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
   await HiveStuff.init();
   runApp(const MyApp());
 }
