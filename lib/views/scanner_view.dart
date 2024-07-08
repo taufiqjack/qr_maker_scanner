@@ -13,7 +13,7 @@ import 'package:toast/toast.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class ScannerView extends StatefulWidget {
-  const ScannerView({Key? key}) : super(key: key);
+  const ScannerView({super.key});
 
   @override
   State<ScannerView> createState() => _ScannerViewState();
@@ -23,7 +23,7 @@ class _ScannerViewState extends State<ScannerView>
     with SingleTickerProviderStateMixin {
   // static const flashOn = 'Nyalakan Flash';
   // static const flashOff = 'Matikan Flash';
-  static const flashlighton = FontAwesome.bolt;
+  static const flashlighton = FontAwesome.bold_solid;
   static const flashlightoff = CupertinoIcons.bolt_slash_fill;
   static const frontCamera = 'Kamera Depan';
   // static const backCamera = 'Kamera Belakang';
@@ -77,11 +77,11 @@ class _ScannerViewState extends State<ScannerView>
       body: Stack(children: [
         MobileScanner(
           controller: controller,
-          onDetect: ((qrcode, args) {
+          onDetect: (barcodes) {
             setState(() {
-              result = qrcode.rawValue;
+              barcodes.barcodes.last.rawValue;
             });
-          }),
+          },
         ),
         Positioned(
           top: 0,

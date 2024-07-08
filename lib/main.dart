@@ -41,8 +41,7 @@ class MyApp extends StatelessWidget {
             navigatorKey: Go.navigatorKey,
             theme: state.copyWith(
                 textTheme: state.textTheme
-                    .apply(fontFamily: GoogleFonts.montserrat().fontFamily),
-                useMaterial3: true),
+                    .apply(fontFamily: GoogleFonts.montserrat().fontFamily)),
             /* ThemeData(
               useMaterial3: true,
               colorSchemeSeed: Colors.blue[700],
