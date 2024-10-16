@@ -73,7 +73,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Get APPBUNDLE from Artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: APPBUNDLE
       - name: Release APPBUNDLE to internal track
