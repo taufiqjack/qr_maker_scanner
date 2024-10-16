@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:image_gallery_saver_plus/image_gallery_saver_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:qr_maker_scan/utils/ads.dart';
 import 'package:qr_maker_scan/views/dashboard_view.dart';
@@ -90,7 +90,7 @@ class QrController extends State<DashboardView> {
         ByteData? byteData =
             await (image.toByteData(format: ui.ImageByteFormat.png));
         if (byteData != null) {
-          await ImageGallerySaver.saveImage(byteData.buffer.asUint8List(),
+          await ImageGallerySaverPlus.saveImage(byteData.buffer.asUint8List(),
               isReturnImagePathOfIOS: true);
 
           Toast.show('Gambar tersimpan!',

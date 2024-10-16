@@ -32,7 +32,8 @@ class _ScannerViewState extends State<ScannerView>
   var flashState = flashlightoff;
   var cameraState = frontCamera;
   // QRViewController? controller;
-  MobileScannerController controller = MobileScannerController();
+  MobileScannerController controller =
+      MobileScannerController(detectionSpeed: DetectionSpeed.noDuplicates);
   String? result;
 
   final GlobalKey qrKey = GlobalKey();
