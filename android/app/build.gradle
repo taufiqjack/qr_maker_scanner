@@ -39,7 +39,7 @@ def keystoreProperties = new Properties()
 
 android {
     namespace "com.rencanggunung.qr_maker_scan"
-    compileSdkVersion 34
+    compileSdkVersion 35
     ndkVersion "27.0.12077973"
 
     compileOptions {
@@ -61,8 +61,8 @@ android {
         applicationId "com.rencanggunung.qr_maker_scan"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion 22
-        targetSdkVersion 34
+        minSdkVersion 24
+        targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
