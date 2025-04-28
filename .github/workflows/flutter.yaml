@@ -85,4 +85,6 @@ jobs:
           packageName: com.rencanggunung.qr_maker_scan
           releaseFiles: app-release.aab
           track: internal
-          status: draft
+          status: draft         
+          isDraftRelease: false
+          changesNotSentForReview: true
