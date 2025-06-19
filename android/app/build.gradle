@@ -99,7 +99,7 @@ dependencies {
     implementation 'com.google.mlkit:barcode-scanning:17.3.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:2.1.0"
     implementation 'com.google.android.material:material:1.11.0'
-    implementation 'com.google.android.gms:play-services-ads:23.4.0'
+    implementation 'com.google.android.gms:play-services-ads:24.2.0'
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.2'
     implementation 'com.android.support:multidex:1.0.3'
 

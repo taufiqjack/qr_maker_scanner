@@ -18,8 +18,13 @@ class DashboardView extends StatefulWidget {
 
   Widget build(BuildContext context, QrController controller) {
     return Scaffold(
-      body: WillPopScope(
-        onWillPop: exitApp,
+      body: PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (didPop, result) {
+          if (didPop) {
+            exitApp();
+          }
+        },
         child: ModalProgress(
           inAsyncCall: controller.isLoading,
           child: Padding(
